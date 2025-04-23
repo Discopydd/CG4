@@ -76,10 +76,16 @@
     <ClCompile Include="sence\GameScene.cpp">
       <Filter>sence</Filter>
     </ClCompile>
+    <ClCompile Include="Parrticle.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="sence\GameScene.h">
       <Filter>sence</Filter>
+    </ClInclude>
+    <ClInclude Include="Parrticle.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -1,5 +1,6 @@
 #pragma once
 #include"KamataEngine.h"
+#include "../Parrticle.h"
 
 using namespace KamataEngine;
 /// <summary>
@@ -37,6 +38,10 @@ private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
 
+	Camera camera_;
+	Model* modelParticle_ = nullptr;
+
+	Particle* particle_ = nullptr;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

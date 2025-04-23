@@ -3,12 +3,21 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	delete modelParticle_;
+	delete particle_;
+}
 
 void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
+	modelParticle_ = Model::CreateSphere(4, 4);
+	camera_.Initialize();
+	//パーティクルの生成
+	particle_ = new Particle();
+	//パーティクルの初期化
+	particle_->Initialize(modelParticle_);
 }
 
 void GameScene::Update() {}
@@ -39,7 +48,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-
+	particle_->Draw(camera_);
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion
