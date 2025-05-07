@@ -184,6 +184,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parrticle.cpp" />
     <ClCompile Include="sence\GameScene.cpp" />
+    <ClCompile Include="WorldTransformEX.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Parrticle.h" />

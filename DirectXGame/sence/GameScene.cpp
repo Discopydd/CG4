@@ -20,7 +20,9 @@ void GameScene::Initialize() {
 	particle_->Initialize(modelParticle_);
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	particle_->Update();
+}
 
 void GameScene::Draw() {
 

@@ -7,6 +7,8 @@ class Particle {
 	private:
 		WorldTransform worldTransform_;
 		Model* model_ = nullptr;
+		ObjectColor objectColor_;
+		Vector4 color_;
 	public:
 	~Particle();
 	/// <summary>
