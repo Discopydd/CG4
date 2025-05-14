@@ -41,7 +41,7 @@ private: // メンバ変数
 	Camera camera_;
 	Model* modelParticle_ = nullptr;
 
-	Particle* particle_ = nullptr;
+	std::list<Particle*>particles_;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

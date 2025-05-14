@@ -5,7 +5,10 @@ GameScene::GameScene() {}
 
 GameScene::~GameScene() {
 	delete modelParticle_;
-	delete particle_;
+	for (Particle* particle : particles_) {
+		delete particle;
+	}
+	particles_.clear();
 }
 
 void GameScene::Initialize() {
@@ -15,13 +18,20 @@ void GameScene::Initialize() {
 	modelParticle_ = Model::CreateSphere(4, 4);
 	camera_.Initialize();
 	//パーティクルの生成
-	particle_ = new Particle();
-	//パーティクルの初期化
-	particle_->Initialize(modelParticle_);
+	for (int i = 0; i < 150; i++) {
+		Particle* particle = new Particle();
+		Vector3 position = { 0.5f*i,0.0f,0.0f };
+		//パーティクルの初期化
+		particle->Initialize(modelParticle_, position);
+
+		particles_.push_back(particle);
+	}
 }
 
 void GameScene::Update() {
-	particle_->Update();
+	for (Particle* particle : particles_) {
+		particle->Update();
+	}
 }
 
 void GameScene::Draw() {
@@ -50,7 +60,9 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	particle_->Draw(camera_);
+	for (Particle* particle : particles_) {
+		particle->Draw(camera_);
+	}
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion

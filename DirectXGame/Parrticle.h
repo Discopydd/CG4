@@ -14,7 +14,7 @@ class Particle {
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initialize(Model* model);
+	void Initialize(Model* model,Vector3 position);
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
