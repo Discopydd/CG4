@@ -2,7 +2,6 @@
 #include"KamataEngine.h"
 #include "../Parrticle.h"
 
-using namespace KamataEngine;
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -36,11 +35,11 @@ public: // メンバ関数
 
 	void ParticleBorn(Vector3 position);
 private: // メンバ変数
-	DirectXCommon* dxCommon_ = nullptr;
-	Input* input_ = nullptr;
+	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
+	KamataEngine::Input* input_ = nullptr;
 
-	Camera camera_;
-	Model* modelParticle_ = nullptr;
+	KamataEngine::Camera camera_;
+	KamataEngine::Model* modelParticle_ = nullptr;
 
 	std::list<Particle*>particles_;
 

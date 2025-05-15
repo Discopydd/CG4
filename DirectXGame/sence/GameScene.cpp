@@ -3,7 +3,6 @@
 #include<random>
 #include <ctime>
 using namespace KamataEngine::MathUtility;
-
 GameScene::GameScene() {
 
 }

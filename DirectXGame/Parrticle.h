@@ -5,11 +5,11 @@ using namespace KamataEngine;
 
 class Particle {
 private:
-	WorldTransform worldTransform_;
-	Model* model_ = nullptr;
-	ObjectColor objectColor_;
-	Vector4 color_;
-	Vector3 velocity_;
+	KamataEngine::WorldTransform worldTransform_;
+	KamataEngine::Model* model_ = nullptr;
+	KamataEngine::ObjectColor objectColor_;
+	KamataEngine::Vector4 color_;
+	KamataEngine::Vector3 velocity_;
 
 	bool isFinished_ = false;           // 終了フラグ
 	float counter_ = 0.0f;              // 経過時間
