@@ -1,8 +1,6 @@
 #pragma once
 #include<KamataEngine.h>
 
-using namespace KamataEngine;
-
 class Particle {
 private:
 	KamataEngine::WorldTransform worldTransform_;
@@ -19,7 +17,7 @@ public:
 	/// <summary>
 	/// 初期化
 	/// </summary>
-	void Initialize(Model* model, Vector3 position, Vector3 velocity);
+	void Initialize(KamataEngine::Model* model, KamataEngine::Vector3 position, KamataEngine::Vector3 velocity);
 	/// <summary>
 	/// 毎フレーム処理
 	/// </summary>
@@ -28,7 +26,7 @@ public:
 	/// <summary>
 	/// 描画
 	/// </summary>
-	void Draw(Camera& camera);
+	void Draw(KamataEngine::Camera& camera);
 
 	/// <summary>
 	/// 終了判定Getter

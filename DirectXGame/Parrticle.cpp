@@ -1,6 +1,6 @@
 #include "Parrticle.h"
 #include <algorithm>
-using namespace MathUtility;
+using namespace KamataEngine::MathUtility;
 using namespace KamataEngine;
 Particle::~Particle()
 {

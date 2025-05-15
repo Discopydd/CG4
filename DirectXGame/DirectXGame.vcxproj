@@ -181,12 +181,14 @@
     <None Include="Resources\shaders\Sprite.hlsli" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="effect.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Parrticle.cpp" />
     <ClCompile Include="sence\GameScene.cpp" />
     <ClCompile Include="WorldTransformEX.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="effect.h" />
     <ClInclude Include="Parrticle.h" />
     <ClInclude Include="sence\GameScene.h" />
   </ItemGroup>

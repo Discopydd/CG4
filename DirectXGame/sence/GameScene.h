@@ -1,6 +1,7 @@
 #pragma once
 #include"KamataEngine.h"
 #include "../Parrticle.h"
+#include "../effect.h"
 
 /// <summary>
 /// ゲームシーン
@@ -33,7 +34,7 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
-	void ParticleBorn(Vector3 position);
+	void ParticleBorn(KamataEngine::Vector3 position);
 private: // メンバ変数
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
@@ -43,6 +44,11 @@ private: // メンバ変数
 
 	std::list<Particle*>particles_;
 
+	KamataEngine::Model* modelEffect_ = nullptr;
+	Effect* effect_ = nullptr;
+
+	bool _isDebugCameraActrive = false;
+	KamataEngine::DebugCamera* debugCamera_ = nullptr;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

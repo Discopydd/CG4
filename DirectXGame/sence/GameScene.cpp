@@ -3,12 +3,16 @@
 #include<random>
 #include <ctime>
 using namespace KamataEngine::MathUtility;
+using namespace KamataEngine;
 GameScene::GameScene() {
 
 }
 
 GameScene::~GameScene() {
 	delete modelParticle_;
+	delete modelEffect_;
+	delete effect_;
+	delete debugCamera_;
 	for (Particle* particle : particles_) {
 		delete particle;
 	}
@@ -20,12 +24,28 @@ void GameScene::Initialize() {
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	modelParticle_ = Model::CreateSphere(4, 4);
+	modelEffect_ = Model::CreateFromOBJ("rhombus", true);
 	camera_.Initialize();
+	debugCamera_ = new DebugCamera(WinApp::kWindowWidth, WinApp::kWindowHeight);
+	effect_ = new Effect();
+    effect_->Initialize(modelEffect_);
 }
 
 void GameScene::Update() {
-
-	particles_.remove_if([](Particle* particle) {
+	#ifdef _DEBUG
+	if (input_->TriggerKey(DIK_SPACE)) {
+		_isDebugCameraActrive = !_isDebugCameraActrive;
+	}
+#endif // _DEBUG
+	if (_isDebugCameraActrive) {
+		debugCamera_->Update();
+		camera_.matView = debugCamera_->GetCamera().matView;
+		camera_.matProjection = debugCamera_->GetCamera().matProjection;
+		camera_.TransferMatrix();
+	} else {
+		camera_.UpdateMatrix();
+	}
+	/*particles_.remove_if([](Particle* particle) {
 		if (particle->IsFinished()) {
 			delete particle;
 			return true;
@@ -41,7 +61,8 @@ void GameScene::Update() {
 	}
 	for (Particle* particle : particles_) {
 		particle->Update();
-	}
+	}*/
+	effect_->Update();
 }
 
 void GameScene::Draw() {
@@ -70,9 +91,10 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	for (Particle* particle : particles_) {
+	/*for (Particle* particle : particles_) {
 		particle->Draw(camera_);
-	}
+	}*/
+	effect_->Draw(camera_);
 	// 3Dオブジェクト描画後処理
 	Model::PostDraw();
 #pragma endregion
