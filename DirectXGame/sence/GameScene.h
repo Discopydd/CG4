@@ -34,6 +34,7 @@ public: // メンバ関数
 	/// </summary>
 	void Draw();
 
+	void ParticleBorn(Vector3 position);
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
@@ -42,6 +43,7 @@ private: // メンバ変数
 	Model* modelParticle_ = nullptr;
 
 	std::list<Particle*>particles_;
+
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

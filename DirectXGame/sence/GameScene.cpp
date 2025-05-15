@@ -1,6 +1,7 @@
 #include "GameScene.h"
 #include <cassert>
 #include<random>
+#include <ctime>
 using namespace KamataEngine::MathUtility;
 
 GameScene::GameScene() {
@@ -16,29 +17,11 @@ GameScene::~GameScene() {
 }
 
 void GameScene::Initialize() {
-	std::random_device seedGenerator;
-	std::mt19937 randomEngine(seedGenerator());
-	std::uniform_real_distribution<float>distribution(-1.0f, 1.0f);
+	srand((unsigned)time(NULL));
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
 	modelParticle_ = Model::CreateSphere(4, 4);
 	camera_.Initialize();
-
-	//パーティクルの生成
-	for (int i = 0; i < 150; i++) {
-		Particle* particle = new Particle();
-		//位置
-		Vector3 position = { 0.0f,0.0f,0.0f };
-		//移動量
-		Vector3 velocity = { distribution(randomEngine),distribution(randomEngine),0 };
-		Normalize(velocity);                            // 方向单位化
-		velocity *= distribution(randomEngine);         // 加上一个随机的速度幅度
-		velocity *= 0.1f;
-		//パーティクルの初期化
-		particle->Initialize(modelParticle_, position, velocity);
-
-		particles_.push_back(particle);
-	}
 }
 
 void GameScene::Update() {
@@ -50,6 +33,13 @@ void GameScene::Update() {
 		}
 		return false;
 		});
+
+	if (rand() % 20 == 0) {
+		float x = (rand() / (float)RAND_MAX) * 60.0f - 30.0f;
+		float y = (rand() / (float)RAND_MAX) * 40.0f - 20.0f;
+		Vector3 position = { x, y, 0.0f };
+		ParticleBorn(position);
+	}
 	for (Particle* particle : particles_) {
 		particle->Update();
 	}
@@ -100,4 +90,23 @@ void GameScene::Draw() {
 	Sprite::PostDraw();
 
 #pragma endregion
+}
+
+void GameScene::ParticleBorn(Vector3 position)
+{
+	std::random_device seedGenerator;
+	std::mt19937 randomEngine(seedGenerator());
+	std::uniform_real_distribution<float>distribution(-1.0f, 1.0f);
+
+	for (int i = 0; i < 30; i++) {
+		Particle* particle = new Particle();
+
+		Vector3 velocity = { distribution(randomEngine), distribution(randomEngine), 0 };
+		Normalize(velocity);
+		velocity *= distribution(randomEngine);
+		velocity *= 0.1f;
+
+		particle->Initialize(modelParticle_, position, velocity);
+		particles_.push_back(particle);
+	}
 }
