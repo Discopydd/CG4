@@ -35,6 +35,8 @@ public: // メンバ関数
 	void Draw();
 
 	void ParticleBorn(KamataEngine::Vector3 position);
+
+	void EffectBorn(KamataEngine::Vector3 center);
 private: // メンバ変数
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
@@ -45,7 +47,7 @@ private: // メンバ変数
 	std::list<Particle*>particles_;
 
 	KamataEngine::Model* modelEffect_ = nullptr;
-	Effect* effect_ = nullptr;
+	std::list<Effect*> effects_;
 
 	bool _isDebugCameraActrive = false;
 	KamataEngine::DebugCamera* debugCamera_ = nullptr;
