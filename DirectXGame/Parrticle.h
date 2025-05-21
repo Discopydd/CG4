@@ -4,10 +4,10 @@
 using namespace KamataEngine;
 
 class Particle {
-	private:
-		WorldTransform worldTransform_;
-		Model* model_ = nullptr;
-	public:
+private:
+	WorldTransform worldTransform_;
+	Model* model_ = nullptr;
+public:
 	~Particle();
 	/// <summary>
 	/// 初期化
