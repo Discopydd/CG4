@@ -142,7 +142,7 @@ void GameScene::EffectBorn(Vector3 center)
 
     std::random_device seed;
     std::mt19937 rng(seed());
-    std::uniform_real_distribution<float> scaleDistY(5.5f, 8.0f);  // Y方向のサイズ
+    std::uniform_real_distribution<float> scaleDistY(3.5f, 5.0f);  // Y方向のサイズ
 	std::uniform_real_distribution<float> scaleDistX(0.5f, 1.0f);  // X方向のサイズ
     std::uniform_real_distribution<float> angleOffset(-0.3f, 0.3f); // ちょっとしたズレ
 
