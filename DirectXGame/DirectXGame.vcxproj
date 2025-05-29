@@ -183,12 +183,14 @@
   <ItemGroup>
     <ClCompile Include="effect.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Model2.cpp" />
     <ClCompile Include="Parrticle.cpp" />
     <ClCompile Include="sence\GameScene.cpp" />
     <ClCompile Include="WorldTransformEX.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="effect.h" />
+    <ClInclude Include="Model2.h" />
     <ClInclude Include="Parrticle.h" />
     <ClInclude Include="sence\GameScene.h" />
   </ItemGroup>

@@ -2,7 +2,7 @@
 #include"KamataEngine.h"
 #include "../Parrticle.h"
 #include "../effect.h"
-
+#include "../model2.h"
 /// <summary>
 /// ゲームシーン
 /// </summary>
@@ -39,6 +39,9 @@ private: // メンバ変数
 	KamataEngine::Input* input_ = nullptr;
 
 	KamataEngine::Camera camera_;
+
+	KamataEngine::Model2* testModel_ = nullptr;
+	KamataEngine::WorldTransform worldTransform_;
 
 	bool _isDebugCameraActrive = false;
 	KamataEngine::DebugCamera* debugCamera_ = nullptr;

@@ -7,7 +7,9 @@ GameScene::GameScene() {
 }
 
 GameScene::~GameScene() {
-	
+	Model2::StaticFinalize();
+	delete testModel_;
+	delete debugCamera_;
 }
 
 void GameScene::Initialize() {
@@ -15,6 +17,9 @@ void GameScene::Initialize() {
 	input_ = Input::GetInstance();
 	camera_.Initialize();
 	debugCamera_ = new DebugCamera(WinApp::kWindowWidth, WinApp::kWindowHeight);
+	Model2::StaticInitialize();
+	testModel_ = Model2::CreateFromOBJ("plane", true);
+	worldTransform_.Initialize();
 }
 
 void GameScene::Update() {
@@ -55,13 +60,14 @@ void GameScene::Draw() {
 
 #pragma region 3Dオブジェクト描画
 	// 3Dオブジェクト描画前処理
-	Model::PreDraw(commandList);
+	Model2::PreDraw(commandList);
 
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
+	testModel_->Draw(worldTransform_, camera_);
 	// 3Dオブジェクト描画後処理
-	Model::PostDraw();
+	Model2::PostDraw();
 #pragma endregion
 
 #pragma region 前景スプライト描画
