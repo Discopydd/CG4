@@ -1,5 +1,6 @@
 #include "Parrticle.h"
 #include <algorithm>
+#include <cassert>
 using namespace KamataEngine::MathUtility;
 using namespace KamataEngine;
 Particle::~Particle()
