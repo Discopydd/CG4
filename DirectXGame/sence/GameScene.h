@@ -41,6 +41,7 @@ private: // メンバ変数
 	KamataEngine::Camera camera_;
 
 	KamataEngine::Model2* testModel_ = nullptr;
+	uint32_t textureHandle_ = 0;
 	KamataEngine::WorldTransform worldTransform_;
 
 	bool _isDebugCameraActrive = false;

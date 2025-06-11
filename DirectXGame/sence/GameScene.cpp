@@ -18,7 +18,8 @@ void GameScene::Initialize() {
 	camera_.Initialize();
 	debugCamera_ = new DebugCamera(WinApp::kWindowWidth, WinApp::kWindowHeight);
 	Model2::StaticInitialize();
-	testModel_ = Model2::CreateFromOBJ("plane", true);
+	testModel_ = Model2::CreateSquare();
+	textureHandle_ = TextureManager::Load("uvChecker.png");
 	worldTransform_.Initialize();
 }
 
@@ -65,7 +66,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに3Dオブジェクトの描画処理を追加できる
 	/// </summary>
-	testModel_->Draw(worldTransform_, camera_);
+	testModel_->Draw(worldTransform_, camera_, textureHandle_);
 	// 3Dオブジェクト描画後処理
 	Model2::PostDraw();
 #pragma endregion
