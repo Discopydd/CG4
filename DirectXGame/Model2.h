@@ -139,7 +139,7 @@ namespace KamataEngine {
 		/// <summary>
 	/// 正方形モデル生成
 	/// </summary>
-		static Model2* CreateSquare();
+		static Model2* CreateSquare(int count, const Vector3& startPos);
 		/// <summary>
 		/// 描画前処理
 		/// </summary>

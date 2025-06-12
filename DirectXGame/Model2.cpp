@@ -131,41 +131,47 @@ Model2* Model2::CreateSphere(uint32_t divisionVertial, uint32_t divisionHorizont
 	return instance;
 }
 
-Model2* Model2::CreateSquare()
+Model2* Model2::CreateSquare(int count, const Vector3& startPos)
 {
 	Model2* instance = new Model2;
     std::vector<Mesh::VertexPosNormalUv> vertices;
     std::vector<uint32_t> indices;
 
-    const uint32_t kNumVertices = 4;
-    const uint32_t kNumIndices = 6;
-    vertices.resize(kNumVertices);
-    indices.resize(kNumIndices);
+    const uint32_t kVerticesPerSquare = 4;
+	const uint32_t kIndicesPerSquare = 6;
+    vertices.resize(count * kVerticesPerSquare);
+    indices.resize(count * kIndicesPerSquare);
 
     // 頂点データ設定（左下 → 左上 → 右下 → 右上）
-    vertices[0].pos = { -0.5f, -0.5f, 0.0f };
-    vertices[0].uv = { 0.0f, 1.0f };
-    vertices[0].normal = { 0.0f, 0.0f, 1.0f };
+	for (int i = 0; i < count; ++i) {
+		float offsetX = startPos.x + i;
+		float offsetY = startPos.y;
+		float offsetZ = startPos.z;
+		float half = 0.5f;
 
-    vertices[1].pos = { -0.5f,  0.5f, 0.0f };
-    vertices[1].uv = { 0.0f, 0.0f };
-    vertices[1].normal = { 0.0f, 0.0f, 1.0f };
+		uint32_t vi = i * kVerticesPerSquare;
+		vertices[vi + 0].pos = { offsetX - half, offsetY - half, offsetZ }; // 左下
+		vertices[vi + 1].pos = { offsetX - half, offsetY + half, offsetZ }; // 左上
+		vertices[vi + 2].pos = { offsetX + half, offsetY - half, offsetZ }; // 右下
+		vertices[vi + 3].pos = { offsetX + half, offsetY + half, offsetZ }; // 右上
 
-    vertices[2].pos = { 0.5f, -0.5f, 0.0f };
-    vertices[2].uv = { 1.0f, 1.0f };
-    vertices[2].normal = { 0.0f, 0.0f, 1.0f };
+		for (int j = 0; j < 4; ++j) {
+			vertices[vi + j].uv = {
+				(j == 0 || j == 1) ? 0.0f : 1.0f,
+				(j == 0 || j == 2) ? 1.0f : 0.0f
+			};
+			vertices[vi + j].normal = { 0.0f, 0.0f, 1.0f };
+		}
 
-    vertices[3].pos = { 0.5f,  0.5f, 0.0f };
-    vertices[3].uv = { 1.0f, 0.0f };
-    vertices[3].normal = { 0.0f, 0.0f, 1.0f };
+		uint32_t ii = i * kIndicesPerSquare;
+		indices[ii + 0] = vi + 0;
+		indices[ii + 1] = vi + 1;
+		indices[ii + 2] = vi + 2;
+		indices[ii + 3] = vi + 2;
+		indices[ii + 4] = vi + 1;
+		indices[ii + 5] = vi + 3;
+	}
 
-    // インデックスデータ（2つの三角形）
-    indices[0] = 0;
-    indices[1] = 1;
-    indices[2] = 2;
-    indices[3] = 2;
-    indices[4] = 1;
-    indices[5] = 3;
 
     instance->InitializeFromVertices(vertices, indices);
 

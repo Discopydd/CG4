@@ -18,7 +18,7 @@ void GameScene::Initialize() {
 	camera_.Initialize();
 	debugCamera_ = new DebugCamera(WinApp::kWindowWidth, WinApp::kWindowHeight);
 	Model2::StaticInitialize();
-	testModel_ = Model2::CreateSquare();
+	testModel_ = Model2::CreateSquare(5,{ -2.0f, 0.0f, -45.0f });
 	textureHandle_ = TextureManager::Load("uvChecker.png");
 	worldTransform_.Initialize();
 }
