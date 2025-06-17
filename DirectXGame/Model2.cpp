@@ -145,19 +145,19 @@ Model2* Model2::CreateSquare()
     // 頂点データ設定（左下 → 左上 → 右下 → 右上）
     vertices[0].pos = { -0.5f, -0.5f, 0.0f };
     vertices[0].uv = { 0.0f, 1.0f };
-    vertices[0].normal = { 0.0f, 0.0f, 1.0f };
+    vertices[0].normal = { 0.0f, 0.0f, -1.0f };
 
     vertices[1].pos = { -0.5f,  0.5f, 0.0f };
     vertices[1].uv = { 0.0f, 0.0f };
-    vertices[1].normal = { 0.0f, 0.0f, 1.0f };
+    vertices[1].normal = { 0.0f, 0.0f, -1.0f };
 
     vertices[2].pos = { 0.5f, -0.5f, 0.0f };
     vertices[2].uv = { 1.0f, 1.0f };
-    vertices[2].normal = { 0.0f, 0.0f, 1.0f };
+    vertices[2].normal = { 0.0f, 0.0f, -1.0f };
 
     vertices[3].pos = { 0.5f,  0.5f, 0.0f };
     vertices[3].uv = { 1.0f, 0.0f };
-    vertices[3].normal = { 0.0f, 0.0f, 1.0f };
+    vertices[3].normal = { 0.0f, 0.0f, -1.0f };
 
     // インデックスデータ（2つの三角形）
     indices[0] = 0;
