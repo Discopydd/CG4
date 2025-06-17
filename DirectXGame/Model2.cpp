@@ -160,7 +160,7 @@ Model2* Model2::CreateSquare(int count, const Vector3& startPos)
 				(j == 0 || j == 1) ? 0.0f : 1.0f,
 				(j == 0 || j == 2) ? 1.0f : 0.0f
 			};
-			vertices[vi + j].normal = { 0.0f, 0.0f, 1.0f };
+			vertices[vi + j].normal = { 0.0f, 0.0f, -1.0f };
 		}
 
 		uint32_t ii = i * kIndicesPerSquare;
