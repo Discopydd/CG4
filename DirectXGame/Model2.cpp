@@ -131,52 +131,47 @@ Model2* Model2::CreateSphere(uint32_t divisionVertial, uint32_t divisionHorizont
 	return instance;
 }
 
-Model2* Model2::CreateSquare(int count, const Vector3& startPos)
-{
+Model2* Model2::CreateRing(uint32_t division, float innerRadius, float outerRadius) {
 	Model2* instance = new Model2;
-    std::vector<Mesh::VertexPosNormalUv> vertices;
-    std::vector<uint32_t> indices;
 
-    const uint32_t kVerticesPerSquare = 4;
-	const uint32_t kIndicesPerSquare = 6;
-    vertices.resize(count * kVerticesPerSquare);
-    indices.resize(count * kIndicesPerSquare);
+	std::vector<Mesh::VertexPosNormalUv> vertices;
+	std::vector<uint32_t> indices;
 
-    // 頂点データ設定（左下 → 左上 → 右下 → 右上）
-	for (int i = 0; i < count; ++i) {
-		float offsetX = startPos.x + i;
-		float offsetY = startPos.y;
-		float offsetZ = startPos.z;
-		float half = 0.5f;
+	float radianPerDivide = 2.0f * std::numbers::pi_v<float> / float(division);
 
-		uint32_t vi = i * kVerticesPerSquare;
-		vertices[vi + 0].pos = { offsetX - half, offsetY - half, offsetZ }; // 左下
-		vertices[vi + 1].pos = { offsetX - half, offsetY + half, offsetZ }; // 左上
-		vertices[vi + 2].pos = { offsetX + half, offsetY - half, offsetZ }; // 右下
-		vertices[vi + 3].pos = { offsetX + half, offsetY + half, offsetZ }; // 右上
+	// 頂点を追加
+	for (uint32_t index = 0; index < division; ++index) {
+		float sin0 = std::sin(index * radianPerDivide);
+		float cos0 = std::cos(index * radianPerDivide);
+		float sin1 = std::sin((index + 1) * radianPerDivide);
+		float cos1 = std::cos((index + 1) * radianPerDivide);
 
-		for (int j = 0; j < 4; ++j) {
-			vertices[vi + j].uv = {
-				(j == 0 || j == 1) ? 0.0f : 1.0f,
-				(j == 0 || j == 2) ? 1.0f : 0.0f
-			};
-			vertices[vi + j].normal = { 0.0f, 0.0f, -1.0f };
-		}
+		float u0 = float(index) / float(division);
+		float u1 = float(index + 1) / float(division);
 
-		uint32_t ii = i * kIndicesPerSquare;
-		indices[ii + 0] = vi + 0;
-		indices[ii + 1] = vi + 1;
-		indices[ii + 2] = vi + 2;
-		indices[ii + 3] = vi + 2;
-		indices[ii + 4] = vi + 1;
-		indices[ii + 5] = vi + 3;
+		// 外側 ①②
+		vertices.push_back({ { -sin0 * outerRadius, cos0 * outerRadius, 0.0f }, { 0,0,-1 }, { u0, 0.0f } }); // ①
+		vertices.push_back({ { -sin1 * outerRadius, cos1 * outerRadius, 0.0f }, { 0,0,-1 }, { u1, 0.0f } }); // ②
+
+		// 内側 ③④
+		vertices.push_back({ { -sin0 * innerRadius, cos0 * innerRadius, 0.0f }, { 0,0,-1 }, { u0, 1.0f } }); // ③
+		vertices.push_back({ { -sin1 * innerRadius, cos1 * innerRadius, 0.0f }, { 0,0,-1 }, { u1, 1.0f } }); // ④
+
+		uint32_t baseIndex = index * 4;
+
+		indices.push_back(baseIndex + 0);
+		indices.push_back(baseIndex + 2);
+		indices.push_back(baseIndex + 1);
+
+		indices.push_back(baseIndex + 1);
+		indices.push_back(baseIndex + 2);
+		indices.push_back(baseIndex + 3);
 	}
 
-
-    instance->InitializeFromVertices(vertices, indices);
-
-    return instance;
+	instance->InitializeFromVertices(vertices, indices);
+	return instance;
 }
+
 
 void Model2::PreDraw(ID3D12GraphicsCommandList* commandList) { ModelCommon2::GetInstance()->PreDraw(commandList); }
 

@@ -137,9 +137,10 @@ namespace KamataEngine {
 		/// <returns>生成されたモデル</returns>
 		static Model2* CreateSphere(uint32_t divisionVertial = 10, uint32_t divisionHorizontal = 10);
 		/// <summary>
-	/// 正方形モデル生成
-	/// </summary>
-		static Model2* CreateSquare(int count, const Vector3& startPos);
+	    /// 正方形モデル生成
+	    /// </summary>
+		static Model2* CreateRing(uint32_t division, float innerRadius, float outerRadius);
+
 		/// <summary>
 		/// 描画前処理
 		/// </summary>
