@@ -37,7 +37,7 @@ public: // メンバ関数
 private: // メンバ変数
 	KamataEngine::DirectXCommon* dxCommon_ = nullptr;
 	KamataEngine::Input* input_ = nullptr;
-
+	KamataEngine::ObjectColor objectColor_;
 	KamataEngine::Camera camera_;
 
 	KamataEngine::Model2* testModel_ = nullptr;
