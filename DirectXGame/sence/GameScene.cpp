@@ -70,6 +70,7 @@ void GameScene::Update() {
 
 
 	worldTransform_.rotation_.z -= 0.02f;
+	worldTransform_.rotation_.x -= 0.02f;
 	worldTransform_.UpdateMatrix();
 	
 }
