@@ -3,15 +3,21 @@
 
 GameScene::GameScene() {}
 
-GameScene::~GameScene() {}
+GameScene::~GameScene() {
+	delete stage_;
+}
 
 void GameScene::Initialize() {
 
 	dxCommon_ = DirectXCommon::GetInstance();
 	input_ = Input::GetInstance();
+	stage_ = new Stage();
+    stage_->Initialize();
 }
 
-void GameScene::Update() {}
+void GameScene::Update() {
+	stage_->Update();
+}
 
 void GameScene::Draw() {
 
@@ -25,7 +31,7 @@ void GameScene::Draw() {
 	/// <summary>
 	/// ここに背景スプライトの描画処理を追加できる
 	/// </summary>
-
+	stage_->Draw();
 	// スプライト描画後処理
 	Sprite::PostDraw();
 	// 深度バッファクリア

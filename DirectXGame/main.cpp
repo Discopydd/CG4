@@ -1,7 +1,7 @@
 #include <Windows.h>
 #include"KamataEngine.h"
 #include "sence/GameScene.h"
-#include "TitleScene.h"
+#include "sence/TitleScene.h"
 
 using namespace KamataEngine;
 

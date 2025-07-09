@@ -1,6 +1,6 @@
 #pragma once
 #include"KamataEngine.h"
-
+#include "../stage.h"
 using namespace KamataEngine;
 /// <summary>
 /// ゲームシーン
@@ -36,7 +36,7 @@ public: // メンバ関数
 private: // メンバ変数
 	DirectXCommon* dxCommon_ = nullptr;
 	Input* input_ = nullptr;
-
+	Stage* stage_ = nullptr;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>
