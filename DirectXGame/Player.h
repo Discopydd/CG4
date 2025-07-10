@@ -8,7 +8,7 @@ class Player
     void Initialize(KamataEngine::Camera* camera);
     void Update();
     void Draw();
-
+	const KamataEngine::Vector3& GetWorldPosition();
 private:
     KamataEngine::Model* model_;
 	KamataEngine::WorldTransform worldTransform_;

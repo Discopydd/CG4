@@ -36,3 +36,8 @@ void Player::Draw()
 {
 	model_->Draw(worldTransform_, *camera_);
 }
+
+const KamataEngine::Vector3& Player::GetWorldPosition()
+{
+	return worldTransform_.translation_;
+}
