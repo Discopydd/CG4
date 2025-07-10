@@ -2,6 +2,7 @@
 #include"KamataEngine.h"
 #include "../stage.h"
 #include "../Player.h"
+#include "../NumberDrawer.h"
 using namespace KamataEngine;
 /// <summary>
 /// ゲームシーン
@@ -38,6 +39,8 @@ private: // メンバ変数
 	Input* input_ = nullptr;
 	Stage* stage_ = nullptr;
 	Player* player_ = nullptr;
+	NumberDrawer* numberDrawer_ = nullptr;
+    uint32_t numberTexHandle_= 0;
 	Camera camera_;
 
 	uint32_t hpBarTex_ = 0;
@@ -46,7 +49,7 @@ private: // メンバ変数
 	Sprite* damageBarSprite_ = nullptr;
 
 	float hpRatio_ = 1.0f; // 0.0f ～ 1.0f
-
+	int frameCount_ = 0;
 	/// <summary>
 	/// ゲームシーン用
 	/// </summary>

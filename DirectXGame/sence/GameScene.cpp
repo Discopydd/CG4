@@ -23,6 +23,8 @@ GameScene::~GameScene() {
 	delete player_;
 	delete damageBarSprite_;
 	delete hpBarSprite_;
+	delete numberDrawer_;
+
 }
 
 void GameScene::Initialize() {
@@ -44,10 +46,14 @@ void GameScene::Initialize() {
 	damageBarSprite_->SetSize({ 100, 20 });
 	hpBarSprite_->SetSize({ 100, 20 });
 	damageBarSprite_->SetColor({1.0f, 0.0f, 0.0f, 0.5f});
+
+	numberTexHandle_ = TextureManager::Load("number.png");
+	numberDrawer_ = new NumberDrawer();
+    numberDrawer_->Initialize(numberTexHandle_, { 100.0f, 50.0f });
 }
 
 void GameScene::Update() {
-
+	frameCount_++;
 	Vector3 playerPos = player_->GetWorldPosition();
 	Vector2 screenPos = WorldToScreen(playerPos, camera_.matView, camera_.matProjection, 1280.0f, 720.0f);
 
@@ -101,6 +107,8 @@ void GameScene::Draw() {
 #pragma region 前景スプライト描画
 	// 前景スプライト描画前処理
 	Sprite::PreDraw(commandList);
+	int timeInSeconds = frameCount_ / 1;
+    numberDrawer_->Draw(timeInSeconds);
 	damageBarSprite_->Draw();
 	hpBarSprite_->Draw();
 	/// <summary>

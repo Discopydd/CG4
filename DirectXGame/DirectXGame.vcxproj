@@ -182,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="NumberDrawer.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="sence\GameScene.cpp" />
     <ClCompile Include="sence\TitleScene.cpp" />
@@ -189,6 +190,7 @@
     <ClCompile Include="WorldTransformEx.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="NumberDrawer.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="sence\GameScene.h" />
     <ClInclude Include="sence\TitleScene.h" />
